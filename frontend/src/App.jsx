@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar"; 
+import Footer from "./Components/Footer"; 
+import AboutUs from "./Pages/AboutUs"; 
+import heroBg from "./assets/tour2.jpg";
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
+import MostDesiredPlace from "./Pages/MostDesiredPlaces";
 
-function App() {
-  const [count, setCount] = useState(0)
 
+
+function Hero() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div
+      className="relative flex flex-col items-center justify-center h-screen px-6 text-white bg-center bg-cover"
+      style={{ backgroundImage: `url(${heroBg})` }}
+    >
+      <h1 className="text-5xl font-bold">Explore the World with Tour Buddy</h1>
+      <p className="mt-4 text-lg">Your perfect travel companion for adventure and exploration.</p>
+      <a href="/about-us" className="px-6 py-3 mt-6 text-black transition bg-yellow-500 rounded-lg hover:bg-yellow-600">
+        Learn More
+      </a>
+      
+      <a href="/register" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
+        Register Now
+      </a>
+      <a href="/login" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
+        login Now
+      </a> {/* Link to Register page */}
+    </div>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/most-desired-places" element={<MostDesiredPlace />} />
+
+
+          </Routes>
+        </div>
+        <Footer /> {/* Footer added here */}
+      </div>
+    </Router>
+  );
+}
+
+export default App;
