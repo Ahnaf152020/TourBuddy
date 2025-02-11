@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS `tourbuddy` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS `tourguides`;
+
+CREATE TABLE `tourguides` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `password` VARCHAR(255) NOT NULL,
+    `phone` VARCHAR(20) NOT NULL,
+    `experience_years` INT NOT NULL,
+    `specialization` VARCHAR(255) NOT NULL,
+    `rating` DECIMAL(3,2) DEFAULT 0.0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
