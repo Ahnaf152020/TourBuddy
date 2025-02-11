@@ -1,12 +1,14 @@
 import "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/Navbar"; 
-import Footer from "./Components/Footer"; 
-import AboutUs from "./Pages/AboutUs"; 
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import heroBg from "./assets/tour2.jpg";
-import Register from "./Pages/Register";
+import Footer from "./Components/Footer";
+import Navbar from "./Components/Navbar";
+import AboutUs from "./Pages/AboutUs";
+import AdminProfilePage from "./Pages/AdminProfile";
 import Login from "./Pages/Login";
 import MostDesiredPlace from "./Pages/MostDesiredPlaces";
+import Register from "./Pages/Register";
+import UserProfilePage from "./Pages/UserProfile";
 
 
 
@@ -21,7 +23,7 @@ function Hero() {
       <a href="/about-us" className="px-6 py-3 mt-6 text-black transition bg-yellow-500 rounded-lg hover:bg-yellow-600">
         Learn More
       </a>
-      
+
       <a href="/register" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
         Register Now
       </a>
@@ -43,6 +45,8 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/user-profile" element={<UserProfilePage />} />
+            <Route path="/admin-profile" element={<AdminProfilePage />} />
             <Route path="/most-desired-places" element={<MostDesiredPlace />} />
 
 
