@@ -1,16 +1,10 @@
-INSERT INTO sessions (name, createdAt, duration) VALUES 
-('Math Class', '2024-12-18 09:00:00', 60),
-('Science Lecture', '2024-12-18 11:00:00', 90),
-('History Discussion', '2024-12-18 14:00:00', 120),
-('Art Workshop', '2024-12-18 16:00:00', 45),
-('Music Practice', '2024-12-18 18:00:00', 30);
+INSERT INTO `users` (`name`, `email`, `password`, `created_at`, `updated_at`) VALUES
+('Anan', 'anan55@gmail.com', '$2y$10$aOVO4CdHlNV5pP8UkFs98..JD9DsdO6jh8Wonrxfthu...', '2025-02-01 14:30:28', '2025-02-01 14:30:28'),
+('Ratin', 'Ratin55@gmail.com', '$2y$10$nlWCS7XFNUl9uPlSLfDBH.OBUQmYvKiKi4iZVusveen...', '2025-02-01 15:11:59', '2025-02-01 15:11:59'),
+('Ratin', 'Ratin550@gmail.com', '$2y$10$rs5SyhNjYLhoBs23aOjMve6c98wvNhpRGaOWUKPhKoK...', '2025-02-02 02:21:47', '2025-02-02 02:21:47');
 
 
-INSERT INTO attendances (session_id, roll, created_at, updated_at) VALUES
-(1, 'A001', '2024-12-18 09:10:00', '2024-12-18 09:30:00'),
-(1, 'A002', '2024-12-18 09:15:00', '2024-12-18 09:40:00'),
-(2, 'B001', '2024-12-18 11:20:00', '2024-12-18 11:50:00'),
-(2, 'B002', '2024-12-18 11:25:00', '2024-12-18 11:55:00'),
-(3, 'C001', '2024-12-18 14:10:00', '2024-12-18 14:40:00'),
-(4, 'D001', '2024-12-18 16:05:00', '2024-12-18 16:30:00'),
-(5, 'E001', '2024-12-18 18:05:00', '2024-12-18 18:25:00');
+INSERT INTO `tourguides` (`name`, `email`, `password`, `phone`, `experience_years`, `specialization`, `rating`, `created_at`, `updated_at`) VALUES
+('John Doe', 'johndoe@example.com', '$2y$10$abcd1234hash', '123-456-7890', 5, 'Historical Tours', 4.8, '2025-02-01 10:00:00', '2025-02-01 10:00:00'),
+('Emma Smith', 'emmasmith@example.com', '$2y$10$xyz5678hash', '987-654-3210', 8, 'Adventure Tours', 4.9, '2025-02-01 11:00:00', '2025-02-01 11:00:00'),
+('Liam Brown', 'liambrown@example.com', '$2y$10$efg3456hash', '555-123-4567', 6, 'Cultural Tours', 4.7, '2025-02-01 12:00:00', '2025-02-01 12:00:00');
