@@ -47,16 +47,25 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        // Check if validation fails
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
+            return response()->json([ 
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], 400);
         }
-
-        // Attempt login and generate token
-        if (!$token = JWTAuth::attempt($validator->validated())) {
-            return response()->json(['success' => false, 'msg' => 'Invalid credentials'], 401);
+    
+        // Attempt login for the user
+        $credentials = $validator->validated();
+        if (!$token = JWTAuth::attempt([
+            'email' => $credentials['email'],
+            'password' => $credentials['password'],
+        ], ['guard' => 'user'])) { // Ensure the 'user' guard is used
+            return response()->json([
+                'success' => false,
+                'msg' => 'Invalid credentials',
+            ], 401);
         }
-
+    
         return $this->respondWithToken($token);
     }
 
