@@ -17,7 +17,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/tour_guides/register', [TourGuidesController::class, 'register']);
     Route::post('/tour_guides/login', [TourGuidesController::class, 'login']);
     Route::post('/tour_guides/logout', [TourGuidesController::class, 'logout']);
-/*
+
     Route::post('/skills', [SkillsController::class, 'create']);  // Create a new skill
     Route::get('/skills/{guideId}', [SkillsController::class, 'index']);  // Get skills by guide
     Route::put('/skills/{id}', [SkillsController::class, 'update']);  // Update skill by ID
@@ -29,7 +29,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::put('/packages/{id}', [PackagesController::class, 'update']);  // Update package by ID
     Route::delete('/packages/{id}', [PackagesController::class, 'destroy']);  // Delete package by ID
 
-*/
+
     });
 
 

@@ -20,3 +20,19 @@ INSERT INTO tour_guides (name, email, password, phone, experience, language, loc
 ('Emma Brown', 'emma.brown@example.com', '$2y$10$examplehashedpassword4', '5566778899', 3, 'English', 'San Francisco'),
 ('David Williams', 'david.williams@example.com', '$2y$10$examplehashedpassword5', '6677889900', 7, 'English, Italian', 'Miami');
 
+
+INSERT INTO skills (guide_id, years_of_experience, language_proficiency)
+VALUES
+(1, 5, 'Advanced'),
+(2, 3, 'Intermediate'),
+(3, 7, 'Fluent'),
+(4, 2, 'Basic'),
+(5, 4, 'Advanced');
+
+INSERT INTO package (price, description, duration)
+VALUES
+(199.99, 'Guided tour of New York City with professional guide, including transportation and lunch.', 5),
+(299.50, 'Paris city tour with museum visits, Eiffel Tower tickets, and dinner at a famous restaurant.', 7),
+(149.75, 'Adventure trip to the Grand Canyon, including hiking and camping for two days.', 2),
+(399.99, 'Luxury cruise along the Mediterranean Sea, including meals, entertainment, and excursions.', 10),
+(249.00, 'Historic tour of Rome, visiting major landmarks like the Colosseum, Roman Forum, and Vatican.', 4);
