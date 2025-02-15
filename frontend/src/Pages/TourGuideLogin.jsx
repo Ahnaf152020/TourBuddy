@@ -1,7 +1,7 @@
 import { useState } from "react"
 import PageTitle from "../Components/PageTitle"
 
-const LoginForm = () => {
+const TourGuideLoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -111,4 +111,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm ;
+export default TourGuideLoginForm ;
