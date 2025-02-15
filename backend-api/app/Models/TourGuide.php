@@ -25,7 +25,8 @@ class TourGuide extends Authenticatable implements JWTSubject // Updated class n
         'phone',
         'experience', // Number of years of experience
         'language',  // Languages spoken
-        'location',   // Base location of the tour guide
+        'location',
+        'role',   // Base location of the tour guide
     ];
 
     /**
@@ -55,6 +56,6 @@ class TourGuide extends Authenticatable implements JWTSubject // Updated class n
 
     public function getJWTCustomClaims()
     {
-        return [];
+        return ['role' => $this->role];
     }
 }
