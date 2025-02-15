@@ -39,6 +39,6 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        'test.middleware' => \App\Http\Middleware\TestMiddleware::class,
+        'test.middleware' => \App\Http\Middleware\Authenticate::class,
     ];
 }

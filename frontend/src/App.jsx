@@ -11,6 +11,7 @@ import TourGuideRegister from "./Pages/TourGuideRegister";
 import TourGuideLogin from "./Pages/TourGuideLogin";
 import RegisterSelection from "./Pages/RegisterSelection";
 import LoginSelection from "./Pages/LoginSelection";
+//import Dashboard from "./Pages/Dashboard";
 
 
 
@@ -52,7 +53,7 @@ function App() {
             <Route path="/most-desired-places" element={<MostDesiredPlace />} />
             <Route path="/register-selection" element={<RegisterSelection />} />
             <Route path="/login-selection" element={<LoginSelection />} />
-
+           
 
 
 
