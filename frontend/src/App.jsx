@@ -7,6 +7,11 @@ import heroBg from "./assets/tour2.jpg";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import MostDesiredPlace from "./Pages/MostDesiredPlaces";
+import TourGuideRegister from "./Pages/TourGuideRegister";
+import TourGuideLogin from "./Pages/TourGuideLogin";
+import RegisterSelection from "./Pages/RegisterSelection";
+import LoginSelection from "./Pages/LoginSelection";
+//import Dashboard from "./Pages/Dashboard";
 
 
 
@@ -22,10 +27,10 @@ function Hero() {
         Learn More
       </a>
       
-      <a href="/register" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
+      <a href="/register-selection" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
         Register Now
       </a>
-      <a href="/login" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
+      <a href="/login-selection" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
         login Now
       </a> {/* Link to Register page */}
     </div>
@@ -42,8 +47,16 @@ function App() {
             <Route path="/" element={<Hero />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/tourguide-register" element={<TourGuideRegister />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/tourguide-login" element={<TourGuideLogin />} />
             <Route path="/most-desired-places" element={<MostDesiredPlace />} />
+            <Route path="/register-selection" element={<RegisterSelection />} />
+            <Route path="/login-selection" element={<LoginSelection />} />
+           
+
+
+
 
 
           </Routes>

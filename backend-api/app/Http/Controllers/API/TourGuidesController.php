@@ -4,32 +4,32 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\UserService;
+use App\Services\TourGuideService;
 
-class UserController extends Controller
+class TourGuidesController extends Controller
 {
-    protected $userService;
+    protected $tourGuideService;
 
-    public function __construct(UserService $userService)
+    public function __construct(TourGuideService $tourGuideService)
     {
-        $this->userService = $userService;
+        $this->tourGuideService = $tourGuideService;
     }
 
     public function register(Request $request)
     {
-        $response = $this->userService->register($request->all());
+        $response = $this->tourGuideService->register($request->all());
         return response()->json($response, $response['success'] ? 201 : 400);
     }
 
     public function login(Request $request)
     {
-        $response = $this->userService->login($request->all());
+        $response = $this->tourGuideService->login($request->all());
         return response()->json($response, $response['success'] ? 200 : 400);
     }
 
     public function logout()
     {
-        $response = $this->userService->logout();
+        $response = $this->tourGuideService->logout();
         return response()->json($response);
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class TourGuide extends Authenticatable implements JWTSubject // Updated class name
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,19 +18,15 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
-    public function getJWTIdentifier(){
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims(){
-        return [];
-    }
-
     protected $fillable = [
         'name',
         'email',
         'password',
-        'role',
+        'phone',
+        'experience', // Number of years of experience
+        'language',  // Languages spoken
+        'location',
+        'role',   // Base location of the tour guide
     ];
 
     /**
@@ -52,5 +48,14 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    // JWT methods
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
+    public function getJWTCustomClaims()
+    {
+        return ['role' => $this->role];
+    }
 }
