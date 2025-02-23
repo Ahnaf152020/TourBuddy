@@ -13,7 +13,7 @@ const Navbar = () => {
     const storedRole = localStorage.getItem("role");
 
     if (token) {
-      setUser("User"); // You can replace this with a dynamic username if available
+      setUser("User"); // Replace this with a dynamic username if available
       setRole(storedRole || "user");
     }
   }, []);
@@ -36,6 +36,7 @@ const Navbar = () => {
         <Link to="/" className="font-medium transition hover:text-blue-700">Home</Link>
         <Link to="/about-us" className="font-medium transition hover:text-blue-700">About Us</Link>
         <Link to="/most-desired-places" className="font-medium transition hover:text-blue-700">Most Desired Places</Link>
+        <Link to="/packages-page" className="font-medium transition hover:text-blue-700">Packages</Link>
 
         {/* Role-based Link (Admin Access) */}
         {role === "admin" && (
@@ -72,16 +73,17 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-  className={`fixed inset-0 bg-white transition-transform transform ${
-    menuOpen ? "translate-x-0" : "-translate-x-full"
-  } flex flex-col items-center justify-center space-y-6 lg:hidden shadow-lg`}
->
+        className={`fixed inset-0 bg-white transition-transform transform ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        } flex flex-col items-center justify-center space-y-6 lg:hidden shadow-lg`}
+      >
         <button onClick={() => setMenuOpen(false)} className="absolute text-2xl text-blue-700 top-5 right-5">
           <FaTimes />
         </button>
         <Link to="/" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Home</Link>
         <Link to="/about-us" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>About Us</Link>
         <Link to="/most-desired-places" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Most Desired Places</Link>
+        <Link to="/packages-page" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Packages</Link>
 
         {role === "admin" && (
           <Link to="/admin-dashboard" className="text-lg font-medium transition hover:text-red-600" onClick={() => setMenuOpen(false)}>Admin Panel</Link>
@@ -111,4 +113,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

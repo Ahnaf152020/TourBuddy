@@ -17,17 +17,21 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/tour_guides/register', [TourGuidesController::class, 'register']);
     Route::post('/tour_guides/login', [TourGuidesController::class, 'login']);
     Route::post('/tour_guides/logout', [TourGuidesController::class, 'logout']);
+    Route::get('/tour_guides', [TourGuidesController::class, 'getAllTourGuides']);
 
-    Route::post('/skills', [SkillsController::class, 'create']);  // Create a new skill
-    Route::get('/skills/{guideId}', [SkillsController::class, 'index']);  // Get skills by guide
-    Route::put('/skills/{id}', [SkillsController::class, 'update']);  // Update skill by ID
-    Route::delete('/skills/{id}', [SkillsController::class, 'destroy']);  // Delete skill by ID
+    Route::prefix('skills')->group(function () {
+        Route::post('/create', [SkillsController::class, 'create']); // Create Skill
+        Route::get('/guide/{guideId}', [SkillsController::class, 'index']); // Get Skills for a Guide
+        Route::get('/all', [SkillsController::class, 'getSkillsWithGuides']); // Get Skills with Guide Details
+        Route::put('/update/{id}', [SkillsController::class, 'update']); // Update Skill
+        Route::delete('/delete/{id}', [SkillsController::class, 'destroy']); // Delete Skill
+    });
 
     // Packages routes
-    Route::post('/packages', [PackagesController::class, 'create']);  // Create a new package
-    Route::get('/packages', [PackagesController::class, 'index']);  // Get all packages
-    Route::put('/packages/{id}', [PackagesController::class, 'update']);  // Update package by ID
-    Route::delete('/packages/{id}', [PackagesController::class, 'destroy']);  // Delete package by ID
+    Route::post('/package', [PackagesController::class, 'create']);  // Create a new package
+    Route::get('/package', [PackagesController::class, 'index']);  // Get all packages
+    Route::put('/package/{id}', [PackagesController::class, 'update']);  // Update package by ID
+    Route::delete('/package/{id}', [PackagesController::class, 'destroy']);  // Delete package by ID
 
 
     });

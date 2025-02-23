@@ -32,4 +32,13 @@ class TourGuidesController extends Controller
         $response = $this->tourGuideService->logout();
         return response()->json($response);
     }
+
+
+
+    public function getAllTourGuides()
+    {
+        return response()->json($this->tourGuideService->getAllTourGuides());
+    }
+
+
 }
