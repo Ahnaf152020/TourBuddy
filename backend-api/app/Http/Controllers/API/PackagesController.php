@@ -4,20 +4,20 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Package;
-use Illuminate\Support\Facades\Validator;
+use App\Services\PackageService;
 
 class PackagesController extends Controller
 {
-    // Create a new package
+    protected $packageService;
+
+    public function __construct(PackageService $packageService)
+    {
+        $this->packageService = $packageService;
+    }
+
     public function create(Request $request)
     {
-        // Validate the request
-        $validator = Validator::make($request->all(), [
-            'price' => 'required|numeric|min:0',
-            'description' => 'required|string',
-            'duration' => 'required|integer|min:1',
-        ]);
+        $validator = $this->packageService->validatePackageData($request->all());
 
         if ($validator->fails()) {
             return response()->json([
@@ -26,12 +26,7 @@ class PackagesController extends Controller
             ], 400);
         }
 
-        // Create the package
-        $package = Package::create([
-            'price' => $request->price,
-            'description' => $request->description,
-            'duration' => $request->duration,
-        ]);
+        $package = $this->packageService->createPackage($request->all());
 
         return response()->json([
             'message' => 'Package created successfully!',
@@ -39,25 +34,18 @@ class PackagesController extends Controller
         ], 201);
     }
 
-    // Get all packages
     public function index()
     {
-        $packages = Package::all();
+        $packages = $this->packageService->getAllPackages();
 
         return response()->json([
             'packages' => $packages,
         ]);
     }
 
-    // Update a package
     public function update(Request $request, $id)
     {
-        // Validate the request
-        $validator = Validator::make($request->all(), [
-            'price' => 'required|numeric|min:0',
-            'description' => 'required|string',
-            'duration' => 'required|integer|min:1',
-        ]);
+        $validator = $this->packageService->validatePackageData($request->all());
 
         if ($validator->fails()) {
             return response()->json([
@@ -66,20 +54,14 @@ class PackagesController extends Controller
             ], 400);
         }
 
-        $package = Package::find($id);
+        $package = $this->packageService->updatePackage($id, $request->all());
+
         if (!$package) {
             return response()->json([
                 'success' => false,
                 'message' => 'Package not found!',
             ], 404);
         }
-
-        // Update the package
-        $package->update([
-            'price' => $request->price,
-            'description' => $request->description,
-            'duration' => $request->duration,
-        ]);
 
         return response()->json([
             'message' => 'Package updated successfully!',
@@ -87,18 +69,16 @@ class PackagesController extends Controller
         ]);
     }
 
-    // Delete a package
     public function destroy($id)
     {
-        $package = Package::find($id);
-        if (!$package) {
+        $deleted = $this->packageService->deletePackage($id);
+
+        if (!$deleted) {
             return response()->json([
                 'success' => false,
                 'message' => 'Package not found!',
             ], 404);
         }
-
-        $package->delete();
 
         return response()->json([
             'message' => 'Package deleted successfully!',

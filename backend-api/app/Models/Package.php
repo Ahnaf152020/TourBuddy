@@ -17,7 +17,8 @@ class Package extends Model
     protected $fillable = [
         'price',
         'description',
-        'duration'
+        'duration',
+        'location'
     ];
 
     /**

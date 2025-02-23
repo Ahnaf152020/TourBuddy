@@ -10,16 +10,26 @@ const api = axios.create({
   },
 });
 
-// Add a request interceptor to include the auth token in headers
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("authToken");
-  console.log("Retrieved Token from localStorage:", token); // Debugging
+// Interceptor to attach token to requests
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+// Helper function for handling API errors
+const handleApiError = (error) => {
+  if (error.response) {
+    throw error.response.data;
+  } else {
+    throw new Error("Network error. Please try again.");
   }
-  return config;
-});
+};
 
 // Register user
 export const register = async (userData) => {
@@ -27,7 +37,7 @@ export const register = async (userData) => {
     const response = await api.post("/register", userData);
     return response.data;
   } catch (error) {
-    throw error.response?.data || error.message;
+    handleApiError(error);
   }
 };
 
@@ -35,30 +45,24 @@ export const register = async (userData) => {
 export const login = async (credentials) => {
   try {
     const response = await api.post("/login", credentials);
-    console.log("API Response:", response.data); // Debugging
-
     if (response.data.token) {
       localStorage.setItem("authToken", response.data.token);
-      localStorage.setItem("userRole", response.data.role); // Store role in localStorage
-      console.log("Token stored:", response.data.token);
-      console.log("Role stored:", response.data.role);
+      localStorage.setItem("userRole", response.data.role);
     }
-
     return response.data;
   } catch (error) {
-    throw error.response?.data || error.message;
+    handleApiError(error);
   }
 };
 
 // Logout user
 export const logout = async () => {
   try {
-    const response = await api.post("/logout");
-    localStorage.removeItem("authToken"); // Remove token on logout
-    localStorage.removeItem("userRole"); // Remove role on logout
-    return response.data;
+    await api.post("/logout");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userRole");
   } catch (error) {
-    throw error.response?.data || error.message;
+    handleApiError(error);
   }
 };
 
@@ -68,7 +72,7 @@ export const registerTourGuide = async (tourGuideData) => {
     const response = await api.post("/tour_guides/register", tourGuideData);
     return response.data;
   } catch (error) {
-    throw error.response?.data || error.message;
+    handleApiError(error);
   }
 };
 
@@ -76,36 +80,79 @@ export const registerTourGuide = async (tourGuideData) => {
 export const loginTourGuide = async (credentials) => {
   try {
     const response = await api.post("/tour_guides/login", credentials);
-    console.log("API Response:", response.data); // Debugging
-
     if (response.data.token) {
       localStorage.setItem("authToken", response.data.token);
-      localStorage.setItem("userRole", response.data.role); // Store role in localStorage
-      console.log("Token stored:", response.data.token);
-      console.log("Role stored:", response.data.role);
+      localStorage.setItem("userRole", response.data.role);
     }
-
     return response.data;
   } catch (error) {
-    throw error.response?.data || error.message;
+    handleApiError(error);
   }
 };
 
 // Logout tour guide
 export const logoutTourGuide = async () => {
   try {
-    const response = await api.post("/tour_guides/logout");
-    localStorage.removeItem("authToken"); // Remove token on logout
-    localStorage.removeItem("userRole"); // Remove role on logout
-    return response.data;
+    await api.post("/tour_guides/logout");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userRole");
   } catch (error) {
-    throw error.response?.data || error.message;
+    handleApiError(error);
   }
 };
 
-// Function to get stored user role
-export const getUserRole = () => {
-  return localStorage.getItem("userRole") || null;
+// Get stored user role
+export const getUserRole = () => localStorage.getItem("userRole") || null;
+
+// Fetch all tour guides
+export const getTourGuides = async () => {
+  try {
+    const response = await api.get("/tour_guides");
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Fetch all packages
+export const getPackages = async () => {
+  try {
+    const response = await api.get("/package");
+    return response.data.packages;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Create a package
+export const createPackage = async (packageData) => {
+  try {
+    const response = await api.post("/package", packageData);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Update a package
+export const updatePackage = async (id, packageData) => {
+  try {
+    const response = await api.put(`/package/${id}`, packageData);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Delete a package
+export const deletePackage = async (id) => {
+  try {
+    const response = await api.delete(`/package/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
 };
 
 export default api;
+
