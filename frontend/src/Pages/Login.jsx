@@ -25,7 +25,7 @@ const Login = () => {
         } else if (response.role === "tour_guide") {
           navigate("/guide-dashboard");
         } else {
-          navigate("/");
+          navigate("/profile");
         }
       } else {
         throw new Error("Token missing in response");

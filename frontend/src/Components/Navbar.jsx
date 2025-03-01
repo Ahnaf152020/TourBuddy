@@ -10,19 +10,25 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    const storedRole = localStorage.getItem("role");
-
-    if (token) {
-      setUser("User"); // Replace this with a dynamic username if available
-      setRole(storedRole || "user");
+    const storedRole = localStorage.getItem("userRole");
+  
+    if (token && storedRole) {
+      setRole(storedRole);
+      setUser(storedRole === "user" ? "User" : storedRole === "tour_guide" ? "Tour Guide" : null);
+    } else {
+      setUser(null);
+      setRole(null);
     }
-  }, []);
+  }, [localStorage.getItem("authToken"), localStorage.getItem("userRole")]);  // <-- Update here
+   // Add `role` as a dependency to update state when `role` changes
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    localStorage.removeItem("role");
+    localStorage.removeItem("userRole");
+
     setUser(null);
     setRole(null);
+
     navigate("/login");
   };
 

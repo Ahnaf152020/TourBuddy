@@ -14,6 +14,7 @@ import LoginSelection from "./Pages/LoginSelection";
 import TourGuidePage from "./Pages/TourguidePage";
 import PackagesPage from "./Pages/PackagesPage";
 import CityDetails from "./Pages/CityDetails";
+import Profile from "./Pages/ProfilePage";
 
 
 
@@ -68,6 +69,7 @@ function Hero() {
             <Route path="/tour-guide-page" element={<TourGuidePage/>}/>
             <Route path="/packages-page" element={<PackagesPage />} />
             <Route path="/city/:cityName" element={<CityDetails />} />
+            <Route path = "/profile" element={<Profile/>}/>
            
 
 
