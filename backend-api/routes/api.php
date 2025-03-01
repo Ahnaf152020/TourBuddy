@@ -6,6 +6,8 @@ use App\Http\Controllers\API\TourGuidesController;
 use App\Http\Controllers\API\SkillsController;
 use App\Http\Controllers\API\PackagesController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ReviewController;
+
 
 
 Route::group(['middleware' => 'api'], function () {
@@ -33,6 +35,12 @@ Route::group(['middleware' => 'api'], function () {
     Route::put('/package/{id}', [PackagesController::class, 'update']);  // Update package by ID
     Route::delete('/package/{id}', [PackagesController::class, 'destroy']);  // Delete package by ID
 
+
+    Route::get('/package/{packageId}/reviews', [ReviewController::class, 'index']); // Get all reviews for a package
+    Route::post('/package/{packageId}/reviews', [ReviewController::class, 'create']); // Create a review
+    Route::put('/reviews/{id}', [ReviewController::class, 'update']); // Update a review
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']); // Delete a review
+    
 
     });
 
