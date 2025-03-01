@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\PackageService;
+use App\Models\Package;
 
 class PackagesController extends Controller
 {
@@ -16,23 +17,26 @@ class PackagesController extends Controller
     }
 
     public function create(Request $request)
-    {
-        $validator = $this->packageService->validatePackageData($request->all());
+{
+    // Validate request data
+    $validator = $this->packageService->validatePackageData($request->all());
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors(),
-            ], 400);
-        }
-
-        $package = $this->packageService->createPackage($request->all());
-
+    if ($validator->fails()) {
         return response()->json([
-            'message' => 'Package created successfully!',
-            'package' => $package,
-        ], 201);
+            'success' => false,
+            'errors' => $validator->errors(),
+        ], 400);
     }
+
+    // Call service method to create package
+    $package = $this->packageService->createPackage($request->all());
+
+    return response()->json([
+        'message' => 'Package created successfully!',
+        'package' => $package
+    ], 201);
+}
+
 
     public function index()
     {
@@ -84,4 +88,9 @@ class PackagesController extends Controller
             'message' => 'Package deleted successfully!',
         ]);
     }
+
+
+
+
+
 }

@@ -52,7 +52,7 @@ class PackageService
 
     public function deletePackage($id)
     {
-        $deleted = DB::delete("DELETE FROM packages WHERE id = ?", [$id]);
+        $deleted = DB::delete("DELETE FROM package WHERE id = ?", [$id]);
 
         return $deleted > 0;
     }
