@@ -54,14 +54,21 @@ const TourGuideLoginForm = () => {
     setLoading(true);
     try {
       const response = await loginTourGuide(formData);
-      localStorage.setItem("authToken", response.access_token);
-      navigate("/");
+      console.log("API Response:", response); // Debugging
+    
+      if (response && response.token) {  // Fix here: Use response.token instead of response.access_token
+        localStorage.setItem("authToken", response.token);
+        localStorage.setItem("userRole", response.role);
+        navigate("/profile");
+      } else {
+        setErrors({ general: "Invalid response from server" });
+      }
     } catch (error) {
+      console.error("Login Error:", error.response?.data || error);
       setErrors(error.response?.data?.errors || { general: "Invalid login credentials" });
-    } finally {
-      setLoading(false);
     }
-  };
+    
+  };    
 
   return (
     <section>
