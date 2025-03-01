@@ -16,6 +16,10 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/login', [UserController::class,'login']);
     Route::post('/logout', [UserController::class,'logout']);
 
+
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::get('/tour_guides/profile', [TourGuidesController::class, 'profile']);
+
     Route::post('/tour_guides/register', [TourGuidesController::class, 'register']);
     Route::post('/tour_guides/login', [TourGuidesController::class, 'login']);
     Route::post('/tour_guides/logout', [TourGuidesController::class, 'logout']);
@@ -40,7 +44,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/package/{packageId}/reviews', [ReviewController::class, 'create']); // Create a review
     Route::put('/reviews/{id}', [ReviewController::class, 'update']); // Update a review
     Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']); // Delete a review
-    
+
 
     });
 

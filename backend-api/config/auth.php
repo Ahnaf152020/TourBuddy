@@ -35,7 +35,7 @@ return [
     |
     */
 
-    
+
     'guards' => [
     'web' => [
         'driver' => 'session',
@@ -45,6 +45,10 @@ return [
     'api' => [
         'driver' => 'jwt',
         'provider' => 'users',
+    ],
+    'tour_guide' => [
+        'driver' => 'jwt',
+        'provider' => 'tour_guides',
     ],
 ],
 
@@ -70,6 +74,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'tour_guides' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\TourGuide::class,
         ],
 
         // 'users' => [
