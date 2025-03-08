@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import TbLogo from "../assets/Tb logo.jpg"; // Adjust the path as necessary
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,8 +20,7 @@ const Navbar = () => {
       setUser(null);
       setRole(null);
     }
-  }, [localStorage.getItem("authToken"), localStorage.getItem("userRole")]);  // <-- Update here
-   // Add `role` as a dependency to update state when `role` changes
+  }, [localStorage.getItem("authToken"), localStorage.getItem("userRole")]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -34,8 +34,11 @@ const Navbar = () => {
 
   return (
     <nav className="relative z-50 flex items-center justify-between px-6 py-4 text-black bg-white border-b-2 border-gray-200 shadow-lg lg:px-12">
-      {/* Logo */}
-      <div className="text-2xl font-semibold tracking-wide text-blue-700">Tour Buddy</div>
+      {/* Logo and Brand Name */}
+      <div className="flex items-center">
+        <img src={TbLogo} alt="Tour Buddy Logo" className="h-10 mr-3" /> {/* Adjust height as needed */}
+        <div className="text-2xl font-semibold tracking-wide text-blue-700">Tour Buddy</div>
+      </div>
 
       {/* Desktop Menu */}
       <div className="hidden lg:flex lg:space-x-8">
