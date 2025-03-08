@@ -16,6 +16,9 @@ import PackagesPage from "./Pages/PackagesPage";
 import CityDetails from "./Pages/CityDetails";
 import Profile from "./Pages/ProfilePage";
 
+import PackagePage from "./Pages/PackagePage";
+import ReviewPage from "./Pages/ReviewPage";
+
 
 
 
@@ -70,10 +73,11 @@ function Hero() {
             <Route path="/packages-page" element={<PackagesPage />} />
             <Route path="/city/:cityName" element={<CityDetails />} />
             <Route path = "/profile" element={<Profile/>}/>
-           
+            <Route path="/package/:id" element={<PackagePage />} />
+          <Route path="/review/:id" element={<ReviewPage />} />
+                       
 
-
-
+                        
 
 
           </Routes>

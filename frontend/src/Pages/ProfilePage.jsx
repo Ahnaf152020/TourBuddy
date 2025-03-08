@@ -37,6 +37,7 @@ const ProfilePage = () => {
           throw new Error(response.data.msg || "Failed to fetch profile");
         }
       } catch (err) {
+        console.error("Error fetching profile:", err); // Explicitly use `err`
         setError(err.message);
       } finally {
         setLoading(false);
@@ -110,16 +111,16 @@ const ProfilePage = () => {
           <div className="w-28 h-28 rounded-full bg-gray-300 mx-auto overflow-hidden mb-4 border-4 border-white">
             <img src={user?.profileImage || "https://via.placeholder.com/150"} alt="" className="w-full h-full object-cover" />
           </div>
-          <h3 className="text-2xl font-bold">HELLO, I'M {user?.name?.toUpperCase()}</h3>
+          <h3 className="text-2xl font-bold">HELLO, I&apos;M {user?.name?.toUpperCase()}</h3>
 
           {/* Detailed Bio Section */}
           {user?.role === "tour_guide" ? (
             <p className="text-lg font-mono mt-2 bg-white/40 p-2 rounded-lg text-gray-900 font-semibold">
-              As a tour guide, I offer personalized travel experiences to make your trip unforgettable. With years of experience in the tourism industry, I know the best spots to visit, and I'm here to help you explore the world in the best way possible. I specialize in cultural tours, adventure trips, and historical sightseeing, always ensuring you have an amazing time!
+              As a tour guide, I offer personalized travel experiences to make your trip unforgettable. With years of experience in the tourism industry, I know the best spots to visit, and I&apos;m here to help you explore the world in the best way possible. I specialize in cultural tours, adventure trips, and historical sightseeing, always ensuring you have an amazing time!
             </p>
           ) : (
             <p className="text-lg font-mono mt-2 bg-white/40 p-2 rounded-lg text-gray-900 font-semibold">
-              As a travel enthusiast, I am passionate about exploring the world and discovering new destinations. Whether you’re looking for adventure, relaxation, or cultural immersion, I can help guide you to the best places to make your journey special. Let's plan your next unforgettable trip together!
+              As a travel enthusiast, I am passionate about exploring the world and discovering new destinations. Whether you&apos;re looking for adventure, relaxation, or cultural immersion, I can help guide you to the best places to make your journey special. Let&apos;s plan your next unforgettable trip together!
             </p>
           )}
 

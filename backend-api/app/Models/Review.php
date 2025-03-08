@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,16 +8,16 @@ class Review extends Model
 {
     use HasFactory;
 
-    // Define the fillable attributes to prevent mass-assignment vulnerabilities
     protected $fillable = [
-        'package_id',
-        'user_id',  // Assuming you have a User model for users
-        'rating',
-        'review',
+        'package_id',   // ID of the related package
+        'tour_guide_id', // ID of the related tour guide
+        'user_id',       // ID of the user who created the review
+        'rating',        // Rating (1-5)
+        'review',        // Review text
     ];
 
     /**
-     * Relationship with Package (A review belongs to a package)
+     * Relationship with Package
      */
     public function package()
     {
@@ -26,30 +25,18 @@ class Review extends Model
     }
 
     /**
-     * Relationship with User (A review belongs to a user)
+     * Relationship with TourGuide
      */
-    public function user()
+    public function tourGuide()
     {
-        return $this->belongsTo(User::class); // Assuming you have a User model
+        return $this->belongsTo(TourGuide::class);
     }
 
     /**
-     * Prevent recursion in JSON output by hiding specific relationships
+     * Relationship with User
      */
-    public function toArray()
+    public function user()
     {
-        $array = parent::toArray();
-
-        // Fetch the user without causing recursion
-        $array['user'] = $this->user()->first(); // Fetch the user
-
-        // Fetch the package without causing recursion
-        $array['package'] = $this->package()->first(); // Fetch the package
-
-        // Optionally, you can choose to hide full relationships like 'user' or 'package' 
-        // from the JSON output instead of including them as separate objects.
-        // $this->makeHidden(['user', 'package']); 
-
-        return $array;
+        return $this->belongsTo(User::class);
     }
 }

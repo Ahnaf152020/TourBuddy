@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const API_BASE_URL = "http://127.0.0.1:8000/api";
@@ -24,23 +23,16 @@ api.interceptors.request.use(
 );
 
 // Helper function for handling API errors
-/*const handleApiError = (error) => {
-  if (error.response) {
-    throw error.response.data;
-  } else {
-    throw new Error("Network error. Please try again.");
-  }
-};*/
 const handleApiError = (error) => {
   if (error.response) {
-    console.error('API Error:', error.response.data);
-    throw new Error(error.response.data.message || 'An error occurred');
+    console.error("API Error:", error.response.data);
+    throw new Error(error.response.data.message || "An error occurred");
   } else if (error.request) {
-    console.error('API Error:', error.request);
-    throw new Error('No response received from the server');
+    console.error("API Error:", error.request);
+    throw new Error("No response received from the server");
   } else {
-    console.error('API Error:', error.message);
-    throw new Error('An error occurred while setting up the request');
+    console.error("API Error:", error.message);
+    throw new Error("An error occurred while setting up the request");
   }
 };
 
@@ -148,18 +140,7 @@ export const createPackage = async (packageData) => {
 };
 
 // Update a package
-/*export const updatePackage = async (id, packageData) => {
-  try {
-    const response = await api.put(`/package/${id}`, packageData);
-    return response.data;
-  } catch (error) {
-    handleApiError(error);
-  }
-};*/
 export const updatePackage = async (id, packageData) => {
-  console.log("Updating package ID:", id);
-  console.log("Package Data:", packageData);
-
   try {
     const response = await api.put(`/package/${id}`, packageData);
     return response.data;
@@ -167,7 +148,6 @@ export const updatePackage = async (id, packageData) => {
     handleApiError(error);
   }
 };
-
 
 // Delete a package
 export const deletePackage = async (id) => {
@@ -179,6 +159,54 @@ export const deletePackage = async (id) => {
   }
 };
 
+// Fetch all reviews for a package
+export const getReviews = async (reviewableType, reviewableId) => {
+  try {
+    const response = await api.get(`/reviews/${reviewableType}/${reviewableId}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Create a review
+export const createReview = async (reviewableType, reviewableId, reviewData) => {
+  try {
+    const response = await api.post(`/reviews/${reviewableType}/${reviewableId}`, reviewData);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Update a review
+export const updateReview = async (id, reviewData) => {
+  try {
+    const response = await api.put(`/reviews/${id}`, reviewData);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Delete a review
+export const deleteReview = async (id) => {
+  try {
+    const response = await api.delete(`/reviews/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Fetch package details by ID
+export const getPackageDetails = async (id) => {
+  try {
+    const response = await api.get(`/package/${id}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
 
 export default api;
-

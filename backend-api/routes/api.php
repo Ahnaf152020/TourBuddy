@@ -63,6 +63,18 @@ Route::prefix('admin')->group(function () {
     Route::delete('/payment/{id}', [AdminController::class, 'deletePayment']);
     Route::put('/payment/{id}', [AdminController::class, 'updatePayment']);
     Route::get('/payment/{id}', [AdminController::class, 'getPayment']);
-});   
+});
+
+
+Route::post('/reviews/{reviewableType}/{reviewableId}', [ReviewController::class, 'create']);
+Route::get('/reviews/{reviewableType}/{reviewableId}', [ReviewController::class, 'index']);
+Route::put('/reviews/{id}', [ReviewController::class, 'update']);
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
+
+Route::post('/reviews/package/{packageId}', [ReviewController::class, 'createPackageReview']);
+
+// Create a review for a tour guide
+Route::post('/reviews/tour-guide/{tourGuideId}', [ReviewController::class, 'createTourGuideReview']);
+
 
 });
