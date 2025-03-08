@@ -1,7 +1,9 @@
   
 
 # TourBuddy
-Tour Buddy is a online based travel guide hiring management system WebApp which will help tourists to hire their preferable tour guides to visit their desired destination places.Also a User can make themselves to work as a local/tour guide through our webApp to make travellers know about the scenic beauty and history  of their beloved local places .
+Tour Buddy is an online-based travel guide hiring management system WebApp that helps tourists hire their preferred tour guides to visit desired destinations. Users can also register as local/tour guides to showcase the scenic beauty and history of their beloved local places.
+
+
 
   
 
@@ -95,7 +97,7 @@ Figma Design   : <a href="https://www.figma.com/design/YEUU6Z9rRieZgL7QO0mH3s/To
 	<li>CRUD operations</li>
 	<li>Search/Filter</li>
 	<li>Provide Review,Rating</li>
-	<li>Booking History,Profile</li>
+	<li>Profile</li>
 	<li>Apply Online Payment</li>
 </ul>
 
@@ -104,7 +106,7 @@ Figma Design   : <a href="https://www.figma.com/design/YEUU6Z9rRieZgL7QO0mH3s/To
 	<li>Multi Tour Guide Authentication</li>
 	<li>Online Payment,Profile</li>
 	<li>CRUD operations</li>
-	<li>Hire Form</li>
+	
 	
 </ul>
 
@@ -113,7 +115,8 @@ Figma Design   : <a href="https://www.figma.com/design/YEUU6Z9rRieZgL7QO0mH3s/To
 	<li> Admin Authentication</li>
 	<li>Forget Password</li>
 	<li>Admin Panel</li>
-	<li>Manage Tour Guide,Tourists Payment,Profile</li>
+	<li>Manage Tour Guide</li>
+	
 </ul>
 
 ##  API Endpoints
@@ -121,19 +124,16 @@ Figma Design   : <a href="https://www.figma.com/design/YEUU6Z9rRieZgL7QO0mH3s/To
 
 #### User Authentication
 
--   **POST** `/api/users/register` - User registration.
--   **POST** `/api/users/login` - User login.
--   **POST** `/api/users/logout` - User logout.
--   **POST** `/api/users/forgot-password` - Forgot password (email recovery).
--   **POST** `/api/users/reset-password` - Reset password .
+-   **POST** `/api/register` - User registration.
+-   **POST** `/api/login` - User login.
+-   **POST** `/api/logout` - User logout.
 
 #### Tour Guide Authentication
 
--   **POST** `/api/tourguide/register` - Tour Guide registration.
--   **POST** `/api/tourguide/login` - Tour Guide login.
--   **POST** `/api/tourguide/logout` - Tour Guide logout.
--   **POST** `/api/tourguides/forgot-password` - Forgot password.
--   **POST** `/api/tourguide/reset-password` - Reset password .
+-   **POST** `/api/tour_guides/register` - Tour Guide registration.
+-   **POST** `/api/tour_guides/login` - Tour Guide login.
+-   **POST** `/api/tour_guides/logout` - Tour Guide logout.
+
 
 #### Admin Authentication
 
@@ -142,22 +142,15 @@ Figma Design   : <a href="https://www.figma.com/design/YEUU6Z9rRieZgL7QO0mH3s/To
 
 ----------
 
-### **User Management**
-
--   **GET** `/api/users/me` - Fetch user details (My Account).
--   **PUT** `/api/users/me` - Update user account details.
--   **DELETE** `/api/users/me` - Delete user account.
-
-----------
 
 ### **Tour Guide Management**
 
 #### By Tour Guide
--   **GET** `/api/tourguide/me` - Fetch tourguide details (Tour Guide Account).
--   **PUT** `/api/tourguide/me` - Update tourguide account details.
--   **DELETE** `/api/tourguide/me` - Delete tourguide account.
--   **PATCH** `/api/tourguide/profile/Id` - Update tourguide profile.
--   **POST** `/api/tourguide/profile` - Add a profile.
+-   **GET** `/api/tour_guides` - Fetch tourguide details (Tour Guide Account).
+-   **PUT** `/api/tour_guides/` - Update tourguide account details.
+-   **DELETE** `/api/tour_guide/me` - Delete tourguide account.
+-   **PATCH** `/api/tour_guides/profile'` - Update tourguide profile.
+-   **POST** `/api/tour_guide/profiles` - Add a profile.
 
 #### By Admin
 
@@ -181,8 +174,7 @@ Figma Design   : <a href="https://www.figma.com/design/YEUU6Z9rRieZgL7QO0mH3s/To
 
 -   **GET** `/api/admin/dashboard` - Admin dashboard data (e.g., total tourguides, active tourguides,user ratings and review,payments).
 -   **GET** `/api/admin/users` - Fetch all users.
--   **GET** `/api/tourguide` - Fetch all tourguides.
--   **PATCH** `/api/tourguide/:tourguideId/approve` - Approve tourguide registration.
+-   **GET** `/api/tour_guides` - Fetch all tourguides.
 -   **DELETE** `/api/tourguide/:tourguideId` - Remove tourguide.
 
 
@@ -194,6 +186,12 @@ Figma Design   : <a href="https://www.figma.com/design/YEUU6Z9rRieZgL7QO0mH3s/To
 -   **GET** `/api/language/search` - Search TourGuides by desired language.
 -   **GET** `/api/duration/search` - Search TourGuides by preferred duration.
 -   **GET** `/api/destination/search` - Search TourGuides by desired destination.
+
+
+-   **GET** `/api/description/search` - Search Packages by desired description.
+-   **GET** `/api/duration/search` - Search  Packages by preferred duration.
+-   **GET** `/api/destination/search` - Search  Packages by desired destination.
+
 
 
 ----------
