@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import TbLogo from "../assets/Tb logo.jpg"; // Adjust the path as necessary
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,33 +11,42 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    const storedRole = localStorage.getItem("role");
-
-    if (token) {
-      setUser("User"); // You can replace this with a dynamic username if available
-      setRole(storedRole || "user");
+    const storedRole = localStorage.getItem("userRole");
+  
+    if (token && storedRole) {
+      setRole(storedRole);
+      setUser(storedRole === "user" ? "User" : storedRole === "tour_guide" ? "Tour Guide" : null);
+    } else {
+      setUser(null);
+      setRole(null);
     }
-  }, []);
+  }, [localStorage.getItem("authToken"), localStorage.getItem("userRole")]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    localStorage.removeItem("role");
+    localStorage.removeItem("userRole");
+
     setUser(null);
     setRole(null);
+
     navigate("/login");
   };
 
   return (
     <nav className="relative z-50 flex items-center justify-between px-6 py-4 text-black bg-white border-b-2 border-gray-200 shadow-lg lg:px-12">
-      {/* Logo */}
-      <div className="text-2xl font-semibold tracking-wide text-blue-700">Tour Buddy</div>
+      {/* Logo and Brand Name */}
+      <div className="flex items-center">
+        <img src={TbLogo} alt="Tour Buddy Logo" className="h-10 mr-3" /> {/* Adjust height as needed */}
+        <div className="text-2xl font-semibold tracking-wide text-blue-700">Tour Buddy</div>
+      </div>
 
       {/* Desktop Menu */}
       <div className="hidden lg:flex lg:space-x-8">
         <Link to="/" className="font-medium transition hover:text-blue-700">Home</Link>
         <Link to="/about-us" className="font-medium transition hover:text-blue-700">About Us</Link>
         <Link to="/most-desired-places" className="font-medium transition hover:text-blue-700">Most Desired Places</Link>
-
+        <Link to="/packages-page" className="font-medium transition hover:text-blue-700">Packages</Link>
+        <Link to="/profile" className="font-medium transition hover:text-blue-700">Profile</Link>
         {/* Role-based Link (Admin Access) */}
         {role === "admin" && (
           <Link to="/admin-dashboard" className="font-medium transition hover:text-red-600">Admin Panel</Link>
@@ -72,16 +82,19 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-  className={`fixed inset-0 bg-white transition-transform transform ${
-    menuOpen ? "translate-x-0" : "-translate-x-full"
-  } flex flex-col items-center justify-center space-y-6 lg:hidden shadow-lg`}
->
+        className={`fixed inset-0 bg-white transition-transform transform ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        } flex flex-col items-center justify-center space-y-6 lg:hidden shadow-lg`}
+      >
         <button onClick={() => setMenuOpen(false)} className="absolute text-2xl text-blue-700 top-5 right-5">
           <FaTimes />
         </button>
         <Link to="/" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Home</Link>
         <Link to="/about-us" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>About Us</Link>
         <Link to="/most-desired-places" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Most Desired Places</Link>
+        <Link to="/packages-page" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Packages</Link>
+        <Link to="/profile" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Profile</Link>
+
 
         {role === "admin" && (
           <Link to="/admin-dashboard" className="text-lg font-medium transition hover:text-red-600" onClick={() => setMenuOpen(false)}>Admin Panel</Link>
@@ -111,4 +124,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

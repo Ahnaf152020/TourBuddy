@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { login } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import Uloginbg from "../assets/Uloginbg.jpg"; // Import background image
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ const Login = () => {
         } else if (response.role === "tour_guide") {
           navigate("/guide-dashboard");
         } else {
-          navigate("/");
+          navigate("/profile");
         }
       } else {
         throw new Error("Token missing in response");
@@ -36,40 +37,67 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="p-6 bg-white rounded-lg shadow-md w-96">
-        <h2 className="mb-4 text-xl font-semibold">Login</h2>
-        {error && <p className="mb-3 text-sm text-red-500">{error}</p>}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+    <section
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${Uloginbg})` }}
+    >
+      <div className="w-full max-w-md p-8 bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-blur-lg">
+        <h2 className="mb-6 text-3xl font-bold text-gray-900 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
+          User Login
+        </h2>
+
+        {error && <p className="mb-3 text-sm text-center text-red-600">{error}</p>}
+
+        <form onSubmit={handleSubmit} className="w-full space-y-6">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-lg font-bold text-gray-900 mb-2"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              Email:
+            </label>
             <input
               type="email"
+              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 mt-1 border rounded-lg"
+              placeholder="example@example.com"
+              className="block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md shadow-sm bg-white bg-opacity-90 focus:outline-none focus:ring-teal-500 focus:border-teal-500 hover:border-teal-600"
               required
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Password</label>
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-lg font-bold text-gray-900 mb-2"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              Password:
+            </label>
             <input
               type="password"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 mt-1 border rounded-lg"
+              placeholder="••••••••"
+              className="block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md shadow-sm bg-white bg-opacity-90 focus:outline-none focus:ring-teal-500 focus:border-teal-500 hover:border-teal-600"
               required
             />
           </div>
 
-          <button type="submit" className="w-full p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+          <button
+            type="submit"
+            className={`w-full px-6 py-2 text-lg font-semibold text-white transition duration-200 transform rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 ${
+              error ? "bg-gray-400 cursor-not-allowed" : "bg-teal-500 hover:bg-teal-600 hover:scale-105"
+            }`}
+          >
             Login
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

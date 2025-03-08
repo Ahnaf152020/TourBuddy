@@ -32,4 +32,30 @@ class TourGuidesController extends Controller
         $response = $this->tourGuideService->logout();
         return response()->json($response);
     }
+
+
+
+public function profile()
+{
+    $tourGuide = auth()->guard('tour_guide')->user(); // Use 'tour_guide' guard
+
+    if (!$tourGuide) {
+        return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);
+    }
+
+    return response()->json(['success' => true, 'user' => $tourGuide]);
+}
+
+
+
+
+
+
+
+    public function getAllTourGuides()
+    {
+        return response()->json($this->tourGuideService->getAllTourGuides());
+    }
+
+
 }

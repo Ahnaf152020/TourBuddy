@@ -11,7 +11,14 @@ import TourGuideRegister from "./Pages/TourGuideRegister";
 import TourGuideLogin from "./Pages/TourGuideLogin";
 import RegisterSelection from "./Pages/RegisterSelection";
 import LoginSelection from "./Pages/LoginSelection";
-//import Dashboard from "./Pages/Dashboard";
+import TourGuidePage from "./Pages/TourguidePage";
+import PackagesPage from "./Pages/PackagesPage";
+import CityDetails from "./Pages/CityDetails";
+import Profile from "./Pages/ProfilePage";
+
+import PackagePage from "./Pages/PackagePage";
+import ReviewPage from "./Pages/ReviewPage";
+
 
 
 
@@ -23,21 +30,30 @@ function Hero() {
     >
       <h1 className="text-5xl font-bold">Explore the World with Tour Buddy</h1>
       <p className="mt-4 text-lg">Your perfect travel companion for adventure and exploration.</p>
-      <a href="/about-us" className="px-6 py-3 mt-6 text-black transition bg-yellow-500 rounded-lg hover:bg-yellow-600">
-        Learn More
-      </a>
       
-      <a href="/register-selection" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
-        Register Now
-      </a>
-      <a href="/login-selection" className="px-6 py-3 mt-6 text-black transition bg-blue-500 rounded-lg hover:bg-blue-600">
-        login Now
-      </a> {/* Link to Register page */}
+      {/* Cards Section */}
+      <div className="flex flex-row mt-8 space-x-6">
+        {/* Learn More Card */}
+        <a href="/tour-guide-page" className="flex flex-col items-center justify-center p-6 transition-transform transform rounded-lg shadow-lg bg-white/30 backdrop-blur-sm hover:scale-105 hover:bg-white/40">
+          <h2 className="text-xl font-semibold text-white">Learn More</h2>
+          <p className="mt-2 text-white/80">Discover more about our services.</p>
+        </a>
+        
+        {/* Register Now Card */}
+        <a href="/register-selection" className="flex flex-col items-center justify-center p-6 transition-transform transform rounded-lg shadow-lg bg-blue-500/30 backdrop-blur-sm hover:scale-105 hover:bg-blue-500/40">
+          <h2 className="text-xl font-semibold text-white">Register Now</h2>
+          <p className="mt-2 text-white/80">Join us and start your adventure.</p>
+        </a>
+        
+        {/* Login Now Card */}
+        <a href="/login-selection" className="flex flex-col items-center justify-center p-6 transition-transform transform rounded-lg shadow-lg bg-green-500/30 backdrop-blur-sm hover:scale-105 hover:bg-green-500/40">
+          <h2 className="text-xl font-semibold text-white">Login Now</h2>
+          <p className="mt-2 text-white/80">Access your account.</p>
+        </a>
+      </div>
     </div>
   );
-}
-
-function App() {
+}function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -53,10 +69,15 @@ function App() {
             <Route path="/most-desired-places" element={<MostDesiredPlace />} />
             <Route path="/register-selection" element={<RegisterSelection />} />
             <Route path="/login-selection" element={<LoginSelection />} />
-           
+            <Route path="/tour-guide-page" element={<TourGuidePage/>}/>
+            <Route path="/packages-page" element={<PackagesPage />} />
+            <Route path="/city/:cityName" element={<CityDetails />} />
+            <Route path = "/profile" element={<Profile/>}/>
+            <Route path="/package/:id" element={<PackagePage />} />
+          <Route path="/review/:id" element={<ReviewPage />} />
+                       
 
-
-
+                        
 
 
           </Routes>
