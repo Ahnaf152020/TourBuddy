@@ -112,12 +112,12 @@ const TourGuidePage = () => {
                                 <p className="text-gray-600"><strong>Location:</strong> {guide.location}</p>
                                 <p className="text-gray-600"><strong>Languages:</strong> {guide.language}</p>
                             </div>
-                            <button
+                            {/* <button
                                 className="w-full py-2 mt-4 text-white transition bg-blue-500 rounded-lg shadow-md hover:bg-blue-600"
                                 onClick={() => navigate("/")}
                             >
                                 Select
-                            </button>
+                            </button> */}
                         </div>
                     ))
                 ) : (

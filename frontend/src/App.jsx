@@ -14,9 +14,10 @@ import LoginSelection from "./Pages/LoginSelection";
 import TourGuidePage from "./Pages/TourguidePage";
 import PackagesPage from "./Pages/PackagesPage";
 import CityDetails from "./Pages/CityDetails";
-
-
-
+// import GuideProfile from "./Pages/GuideProfile"; 
+import PaymentPage from "./Pages/PaymentPage"; // Import Payment Page
+import TourGuides from "./Pages/TourGuides";
+import GuideProfile from './Pages/GuideProfile'; // Import the GuideProfile component
 
 function Hero() {
   return (
@@ -68,8 +69,9 @@ function Hero() {
             <Route path="/tour-guide-page" element={<TourGuidePage/>}/>
             <Route path="/packages-page" element={<PackagesPage />} />
             <Route path="/city/:cityName" element={<CityDetails />} />
-           
-
+            <Route path="/Tour-Guides" element={<TourGuides/>} />
+            <Route path="/payment" element={<PaymentPage />} /> {/* Added Payment Page */}
+            <Route path="guideProfile" element={<GuideProfile />} /> {/* Static route for GuideProfile */}
 
 
 

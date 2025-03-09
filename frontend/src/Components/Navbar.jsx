@@ -37,7 +37,10 @@ const Navbar = () => {
         <Link to="/about-us" className="font-medium transition hover:text-blue-700">About Us</Link>
         <Link to="/most-desired-places" className="font-medium transition hover:text-blue-700">Most Desired Places</Link>
         <Link to="/packages-page" className="font-medium transition hover:text-blue-700">Packages</Link>
-
+        <Link to="/Tour-Guides" className="font-medium transition hover:text-blue-700">Tour Guides</Link>
+          {/* <Link to="/payment" className="text-lg text-[#1C2B38] bg-[#FFDA32] px-6 py-2 rounded-md font-bold">
+            Payment
+          </Link> */}
         {/* Role-based Link (Admin Access) */}
         {role === "admin" && (
           <Link to="/admin-dashboard" className="font-medium transition hover:text-red-600">Admin Panel</Link>
@@ -84,6 +87,7 @@ const Navbar = () => {
         <Link to="/about-us" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>About Us</Link>
         <Link to="/most-desired-places" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Most Desired Places</Link>
         <Link to="/packages-page" className="text-lg font-medium transition hover:text-yellow-500" onClick={() => setMenuOpen(false)}>Packages</Link>
+        
 
         {role === "admin" && (
           <Link to="/admin-dashboard" className="text-lg font-medium transition hover:text-red-600" onClick={() => setMenuOpen(false)}>Admin Panel</Link>

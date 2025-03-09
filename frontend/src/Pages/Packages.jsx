@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+;
 
 const Packages = () => {
   const PackageCards = [
@@ -152,7 +152,7 @@ const Packages = () => {
 
         
             
-          <Link to="/payment" className="btn rounded-full mt-4 bg-[#2E60E2] text-lg text-white">Select</Link>
+            <button className="btn rounded-full mt-4 bg-[#2E60E2] text-lg text-white">Select</button>
           </div>
         ))}
       </div>
